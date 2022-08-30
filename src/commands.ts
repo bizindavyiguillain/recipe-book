@@ -4,10 +4,21 @@ import { GetAllRecipesRequest, GetRandomRecipeRequest } from './actions.types';
 import { getAllRecipes } from './api';
 import { Ingredient, Recipe } from './types';
 import { v1 as uuid } from 'uuid';
+import recipes from './api/recipes';
+import { getAllRecipesCommit } from './actions';
 
-export const cmdFetchRecipes = (action: GetAllRecipesRequest) =>
+export const cmdFetchRecipes = () =>
   // ## HERE Q3 ## //
-  Cmd.run(() => {});
+  Cmd.run(
+    () => {
+      return getAllRecipes();
+    },
+    {
+      successActionCreator: (payload) => {
+        return getAllRecipesCommit(payload);
+      },
+    },
+  );
 
 export const cmdFetchRandom = (action: GetRandomRecipeRequest) =>
   Cmd.run(

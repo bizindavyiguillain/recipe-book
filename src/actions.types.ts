@@ -13,6 +13,11 @@ export type GetAllRecipesCommit = {
 
 // ## HERE Q10 SELECT ## //
 
+export type GetOneRecipe = {
+  type: 'GET_One_RECIPES';
+  recipe?: Recipe;
+};
+
 export type GetRandomRecipeRequest = {
   type: 'GET_RANDOM_RECIPE_REQUEST';
   commit: GetRandomRecipeCommit;
@@ -27,4 +32,4 @@ export type RequestAction = GetAllRecipesRequest | GetRandomRecipeRequest;
 
 export type CommitAction = GetAllRecipesCommit | GetRandomRecipeCommit;
 
-export type Actions = CommitAction | RequestAction;
+export type Actions = CommitAction | RequestAction | GetOneRecipe;

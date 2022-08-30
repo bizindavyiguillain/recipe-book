@@ -4,6 +4,9 @@ import styled from 'styled-components';
 import ButtonRandom from './button';
 import RecipeCard from './recipe-card';
 import { Recipe } from '../types';
+import { recipeSelector } from '../reducer';
+import { useAppDispatch, useAppSelector } from '../hooks';
+import { getAllRecipes } from '../actions';
 
 const Container = styled.div`
   display: flex;
@@ -12,9 +15,15 @@ const Container = styled.div`
 
 const Recipes = () => {
   // ## HERE Q5 ## // Replace recipes variable
-  const recipes: Recipe[] = [];
+
+  //useSelector
+  //useDispatch
+  const recipes: Recipe[] = useAppSelector(recipeSelector);
+  const dispatch = useAppDispatch();
+
   React.useEffect(() => {
     // ## HERE Q6 ## //
+    dispatch(getAllRecipes());
   }, []);
   return (
     <div>

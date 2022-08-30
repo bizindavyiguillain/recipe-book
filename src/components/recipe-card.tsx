@@ -1,7 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { Box, Card, CardHeader, Image } from 'grommet';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../hooks';
+import { getOneRecipes } from '../actions';
+import { useAppDispatch, useAppSelector } from '../hooks';
+import { oneRecipeSelector } from '../reducer';
 import { Recipe } from '../types';
 
 interface RecipeCardProps {
@@ -10,6 +12,9 @@ interface RecipeCardProps {
 
 const RecipeCard = ({ recipe }: RecipeCardProps) => {
   const navigate = useNavigate();
+
+  const dispatch = useAppDispatch();
+
   return (
     <Card
       height="medium"
@@ -18,6 +23,8 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
       hoverIndicator="lightgrey"
       onClick={() => {
         // ## HERE Q10 ## //
+        dispatch(getOneRecipes(recipe));
+
         navigate('/recipe');
       }}
       pad="small"
